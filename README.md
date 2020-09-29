@@ -5,5 +5,6 @@ Project completed for the course cs50 webdevelopment with python and javascript
 * Creating Models in Django
 * Lettings logged-in/out users see different things
 * Creating relationships between Models
-* creating context processors to provide context to layout.html
-* creating superuser and allowing admin interface usage
+* Creating context processors to provide context to layout.html
+* Creating superuser and allowing admin interface usage
+* Using Bootstrap
