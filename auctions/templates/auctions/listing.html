@@ -1,0 +1,123 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    {{ data.title }} by: {{data.by}}
+{% endblock %}
+
+{% block body %}
+    {% if data.isClosed %}
+        <div class="alert alert-success" role="alert">
+            {{data.winner}} is the winner of this auction, congratulations!
+        </div>
+    {% endif %}
+    <div class="imp-btns">
+        <form class="flex-item" action="{% url 'listing' listing_id=data.id %}" method="POST">
+            {% csrf_token %}
+            {% if isWatched %}
+                <input type="hidden" name="watchlist" value="remove">
+                <button class="btn btn-secondary">Remove From WatchList</button>
+                {% else %}
+                <input type="hidden" name="watchlist" value="add">
+                <button class="btn btn-secondary">Add To WatchList</button>
+            {% endif %}
+        </form> 
+        {% if user.is_authenticated and not data.isClosed %}
+            {% if isCurrent %}
+            <form class="flex-item" action="{% url 'listing' listing_id=data.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="finish" value="end">
+                <button class="btn btn-danger">Finish Auction</button>
+            </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <br/>
+    
+    <h2 class="heading-main">
+        <button class="btn btn-light self-btn">{{data.title}}</button>
+    </h2>
+    <div class="listing-outer-container">
+        <div class="info-container">
+            <br />
+            {% if data.url %}
+                <img src="{{data.url}}" class="listing-image" alt="listing-photo">
+            {% else %}
+                <div class="listing-image bordered">
+                    <span class="no-image-text">No Image</span>
+                </div>
+            {% endif %}
+            <div class="listing-descr">{{data.description}}</div>
+            <h3 class="listing-price">${{data.bid}}</h3>
+            
+            <div class="listing-details">
+                <h3>Details</h3>
+                <ul>
+                    <li>Listed by: {{data.by}}</li>
+                    {% if data.category == None %}
+                        <li>Category: No Category Listed</li>
+                    {% else %}
+                        <li>Category: {{data.category}}</li>
+                    {% endif %}
+                    <li>Listed On: {{data.date}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bidder-container">
+            {% if user.is_authenticated and not data.isClosed %}
+
+                {% if message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                {% endif %}
+                {% if success %}
+                    <div class="alert alert-success" role="alert">
+                        {{success}}
+                    </div>
+                {% endif %}
+
+                {% if bidInfo %}
+                    <div class="result">{{ bidInfo.result }}</div>
+                {% endif %}
+
+                <form class="centered" action="{% url 'listing' listing_id=data.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input name="bid" class="form-control" type="number" placeholder="Bid" step="0.01" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            {% endif %}
+        </div>
+        <br />
+    </div>
+
+    <br/>
+
+    <div>
+        <h3>Comments</h3>
+        <hr/>
+    </div>
+    <div>
+        {% for comment in comments %}
+            <div class="comment-container">
+                <div class="comment-by">{{comment.by}} says:</div>
+                <p class="message">{{comment.message}}</p>
+                <hr/>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'listing' listing_id=data.id %}" method="POST">
+            {% csrf_token %}
+            <div class="md-form">
+                <textarea name="comment" class="form-control md-textarea" placeholder="Enter Your Comment!"></textarea>
+            </div>
+            <br/>
+            <button class="btn btn-primary">Send Comment</button>
+        </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block body %}
+    <div class="category-container">
+        {% for category in catlist %}
+        <div class="category">
+            <a href="{% url 'catListings' category %}">
+                <div class="badge badgeextend badge-info category-link">
+                    {{category}}
+                </div>
+            </a>
+        </div> 
+        {% empty %}
+        <h3>No Categories Found.</h3>
+        {% endfor %}
+    </div>
+{% endblock %}
