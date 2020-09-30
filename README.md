@@ -8,3 +8,16 @@ Project completed for the course cs50 webdevelopment with python and javascript
 * Creating context processors to provide context to layout.html
 * Creating superuser and allowing admin interface usage
 * Using Bootstrap
+
+
+### Project Specification
+* Let users login/logout.
+* Let users create auctions and list new items.
+* Let users bid on auctions.
+* Let creator of each auction close the auction at any time.
+* Highest Bidder Wins when auction is closed.
+
+#### How to Run?
+* Clone or download Repo
+* cd into the repo directory
+* type python manage.py runserver in command line
