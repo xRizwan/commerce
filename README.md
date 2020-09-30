@@ -16,6 +16,8 @@ Project completed for the course cs50 webdevelopment with python and javascript
 * Let users bid on auctions.
 * Let creator of each auction close the auction at any time.
 * Highest Bidder Wins when auction is closed.
+* Let users add auctions to their watchlist.
+* Let users find all auction listings related to a particular category
 
 #### How to Run?
 * Clone or download Repo
