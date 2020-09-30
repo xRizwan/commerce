@@ -22,4 +22,4 @@ Project completed for the course cs50 webdevelopment with python and javascript
 #### How to Run?
 * Clone or download Repo
 * cd into the repo directory
-* type python manage.py runserver in command line
+* type "python manage.py runserver" in command line
