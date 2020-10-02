@@ -20,6 +20,8 @@ Project completed for the course cs50 webdevelopment with python and javascript
 * Let users find all auction listings related to a particular category
 
 #### How to Run?
+* Download python 3.x
+* type "pip install Django" in the command line
 * Clone or download Repo
 * cd into the repo directory
 * type "python manage.py runserver" in command line
