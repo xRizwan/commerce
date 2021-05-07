@@ -1,7 +1,7 @@
 # commerce
 Project completed for the course cs50 webdevelopment with python and javascript
 
-### Main Learning Objectives
+### Main Objectives
 * Creating Models in Django
 * Lettings logged-in/out users see different things
 * Creating relationships between Models
